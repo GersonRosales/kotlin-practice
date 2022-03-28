@@ -1,6 +1,29 @@
 const val ssn: Int = 6665588
 
 fun main(args: Array<String>) {
+    /** When structure **/
+        println("\n== When structure ===")
+        val color = "red"
+
+        when (color) {
+            "red" -> {
+                print("This is a hot")
+                println(" color.")
+            }
+            "white", "blue" -> println("This is a cold color.")
+            else -> println("Undefined color.")
+        }
+
+        val status = 200
+
+        val meesage = when (status) {
+            in 200..299 -> "It's ok."
+            in 400..599 -> "Something when wrong."
+            else -> "Undefined status."
+        }
+
+        println(meesage)
+
     /** Var Types **/
         val flag: Boolean = true
         val id: Long = 3000000000
@@ -15,7 +38,7 @@ fun main(args: Array<String>) {
 
 
     /** Var **/
-        print("== Vars ===")
+        print("\n== Vars ===")
         var name: String = "" // Rear and write
         println(name)
         name = "Otto"
