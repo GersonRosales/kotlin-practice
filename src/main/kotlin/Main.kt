@@ -1,6 +1,24 @@
 const val ssn: Int = 6665588
 
 fun main(args: Array<String>) {
+    /** For, Foreach, Map, Filter structure **/
+        println("\n== For, Foreach, Map, Filter structure ===")
+        val fruits: List<String> = listOf("melon", "watermelon", "strawberry", "lemon")
+
+        for (fruit in fruits) {
+            println("The $fruit is delicious.")
+        }
+
+        println("\nList of fruits to buy.")
+        fruits.forEachIndexed { i, fruit ->
+            println("${i+1}- $fruit (x${(1..5).random()})")
+        }
+
+        val fruitsLength: List<Int> = fruits.map { fruit -> fruit.length }
+        println("\nFruits Length = $fruitsLength")
+
+        println("\nThe long fruits ${fruits.filter { fruit -> fruit.length > 5 }}")
+
     /** When structure **/
         println("\n== When structure ===")
         val color = "red"
