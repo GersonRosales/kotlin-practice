@@ -1,8 +1,27 @@
 const val ssn: Int = 6665588
 
 fun main(args: Array<String>) {
-    /** For, Foreach, Map, Filter structure **/
-        println("\n== For, Foreach, Map, Filter structure ===")
+    /** Double bang and Try Catch **/
+        println("\n== Double bang and Try Catch ===")
+
+        try {
+            throw ArithmeticException("Division  by 0")
+        } catch (e : Exception) {
+            println("Exception : $e")
+        }
+
+        var email : String? = null
+
+        try {
+            email!!.length
+        } catch (e : Exception) {
+            println("Exception : $e")
+        } finally {
+            println("The window will be closed")
+        }
+
+    /** For, Foreach, Map and Filter structure **/
+        println("\n== For, Foreach, Map and Filter structure ===")
         val fruits: List<String> = listOf("melon", "watermelon", "strawberry", "lemon")
 
         for (fruit in fruits) {
