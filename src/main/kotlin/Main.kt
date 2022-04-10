@@ -2,7 +2,7 @@ const val ssn: Int = 6665588
 
 fun main(args: Array<String>) {
     /************ Functions ************/
-    println("\n== Functions ===")
+    println("\n=== Functions ===")
     var result: Int = sum(5, 7)
     println(result)
 
@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
     printSum(3,1)
 
     /************ Var ************/
-    print("\n== Vars ===")
+    print("\n=== Vars ===")
     var name: String = "" // Rear and write
     println(name)
     name = "Otto"
@@ -28,8 +28,9 @@ fun main(args: Array<String>) {
 
     /************ Var Types ************/
     val flag: Boolean = true
-    val id: Long = 3000000000
-    val id2: Long = 3L
+    val intNum: Int = 2_147_483_647
+    val longNum: Long = 2_147_483_648
+    val longNum2: Long = 3L
     val percentage: Double = 53.66666
     val percentage2: Float = 20.32f
     val percentage3 = 20.32f
@@ -39,7 +40,7 @@ fun main(args: Array<String>) {
     val sum = num1.and(num2)
 
     /************ When structure ************/
-    println("\n== When structure ===")
+    println("\n=== When structure ===")
     val color = "red"
 
     when (color) {
@@ -62,7 +63,7 @@ fun main(args: Array<String>) {
     println(meesage)
 
     /************ For, Foreach, Map and Filter structure ************/
-    println("\n== For, Foreach, Map and Filter structure ===")
+    println("\n=== For, Foreach, Map and Filter structure ===")
     val fruits: List<String> = listOf("melon", "watermelon", "strawberry", "lemon")
 
     for (fruit in fruits) {
@@ -75,12 +76,13 @@ fun main(args: Array<String>) {
     }
 
     val fruitsLength: List<Int> = fruits.map { fruit -> fruit.length }
-    println("\nFruits Length = $fruitsLength")
-
-    println("\nThe long fruits ${fruits.filter { fruit -> fruit.length > 5 }}")
+    println("Fruits Length = $fruitsLength")
+    println("The long fruits ${fruits.filter { fruit -> fruit.length > 5 }}")
+    println("The sort fruits ${fruits.filterNot { fruit -> fruit.length > 5 }}")
+    println("Split the fruits ${fruits.partition { fruit -> fruit.length > 5 }}")
 
     /************ Double bang and Try Catch ************/
-    println("\n== Double bang and Try Catch ===")
+    println("\n=== Double bang and Try Catch ===")
 
     try {
         throw ArithmeticException("Division  by 0")
@@ -99,7 +101,7 @@ fun main(args: Array<String>) {
     }
 
     /************ Lists and Arrays ************/
-    println("\n== Lists and Arrays ===")
+    println("\n=== Lists and Arrays ===")
     val immutableList = listOf<String>("Bread", "Eggs", "Flour")
     var mutableList = mutableListOf<String>()
 
@@ -122,8 +124,28 @@ fun main(args: Array<String>) {
     val arr = arrayOf(1,2,3,4)
     println("Array = $arr, Array as List = ${arr.toList()}")
 
+    val randomNum: List<Int> = listOf(
+        3,1,4,1,5,9,2,6,5,3,6
+    )
+
+    println("\nrandomNum = "+randomNum)
+    println("randomNum.average() = "+randomNum.average())
+    println("randomNum.count() = "+randomNum.count())
+    println("randomNum.count { it > 5 } = "+randomNum.count { it > 5 })
+    println("randomNum.sum() = "+randomNum.sum())
+    println("randomNum.maxOrNull() = "+randomNum.maxOrNull())
+    println("randomNum.minOrNull() = "+randomNum.minOrNull())
+    println("randomNum.joinToString  = "+randomNum.joinToString (
+        separator = "-",
+        prefix = "[pi://",
+        postfix = "]",
+        limit = 4
+    ) {
+      "{$it}"
+    })
+
     /************ Sorting Lists ************/
-    println("\n== Sorting Lists ===")
+    println("\n=== Sorting Lists ===")
     val numbers = listOf<Int>(99,55,1,23,51,12,3,20)
     println("Original         : $numbers")
     println("Reverse          : ${numbers.reversed()}")
@@ -131,8 +153,53 @@ fun main(args: Array<String>) {
     println("SortedDescending : ${numbers.sortedDescending()}")
     println("sortedBy < 20    : ${numbers.sortedBy { it -> it < 20 }}")
     println("Shuffled         : ${numbers.shuffled()}")
-    println("Shuffled         : ${numbers.map { it -> "This is the number $it" }}")
+    println("Map              : ${numbers.map { it -> "This is the number $it" }}")
     println("Filter           : ${numbers.filter { it -> it > 50 }}")
+
+    /************ Maps ************/
+    println("\n=== Maps ===")
+    val numbersMap = mutableMapOf<String,Int>(
+        "One" to 1
+        , "two" to 2
+        , "three" to 3
+    )
+
+    println(numbersMap.get("One"))
+    println(numbersMap["One"])
+    println(numbersMap.getOrDefault("four", 10))
+    println(numbersMap["four"])
+    println(numbersMap.get("five")) // Exception
+
+    numbersMap.put("five", 5)
+    numbersMap["four"] = 4
+    println(numbersMap)
+
+    numbersMap.remove("five")
+    println(numbersMap)
+
+    println(numbersMap.keys)
+    println(numbersMap.values)
+
+    /************ Set ************/
+    println("\n=== Set ===")
+    val vowels = setOf<String>("a","e","i","o","u","u","u","u","u","u","u","u")
+    println(vowels)
+    println(vowels union setOf("b","c","d"))
+    println(setOf("b","c","d") union vowels)
+    println(vowels subtract setOf("e","o"))
+    println(vowels intersect setOf("a","i","u"))
+
+    val setNum = mutableSetOf<Int>(1,2,3,4)
+    println(setNum)
+    setNum.add(5)
+    println(setNum)
+    setNum.remove(1)
+    println(setNum)
+
+    /************ Extension Function ************/
+    println("\n=== Extension Function ===")
+    val phrase = "Walking is good for your health".randomCase()
+    println(phrase)
 }
 
 /** Functions **/
@@ -144,4 +211,13 @@ fun sum2(a: Int, b: Int) = a + b
 
 fun printSum(a: Int, b: Int): Unit {
     println("sum of $a and $b is ${a + b}")
+}
+
+fun String.randomCase() : String {
+    val num = (1..10).random()
+    return if (num.rem(2) == 0) {
+        this.lowercase()
+    } else {
+        this.uppercase()
+    }
 }
