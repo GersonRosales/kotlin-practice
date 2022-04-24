@@ -1,3 +1,5 @@
+import java.sql.Blob
+
 const val ssn: Int = 6665588
 
 fun main(args: Array<String>) {
@@ -224,8 +226,23 @@ fun main(args: Array<String>) {
     text = "It's up to you man!"
     println(text.equals("It's up to you MAN!", ignoreCase = true))
 
-    /************ ************/
+    /************ Lambdas ************/
+    println("\n=== Lambdas ===")
 
+    val getLength : (String) -> Int = {
+        it.length
+    }
+    println(getLength("casa"))
+
+    val listOfName = listOf<String>("Nina", "Pinta", "Santa")
+    println(listOfName.map(getLength))
+
+    /************ High Order Function ************/
+    println("\n=== High Order Function ===")
+    val valueSuperFun = superFun(name = "Gerson", block = {
+        it.length
+    })
+    println(valueSuperFun)
 }
 
 /** Functions **/
@@ -250,4 +267,9 @@ fun String.randomCase() : String {
 
 fun fullName(firstName: String, secondName: String = "", lastName: String) {
     println("Your name is $firstName ${secondName ?: ""}$lastName.")
+}
+
+/************ High Order Function ************/
+fun superFun (name: String, block: (String) -> Int) : Int {
+    return block(name)
 }
