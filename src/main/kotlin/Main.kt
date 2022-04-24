@@ -11,6 +11,8 @@ fun main(args: Array<String>) {
 
     printSum(3,1)
 
+    fullName(firstName = "Gerson", lastName = "Rosales") // Parameters named
+
     /************ Var ************/
     print("\n=== Vars ===")
     var name: String = "" // Rear and write
@@ -200,6 +202,30 @@ fun main(args: Array<String>) {
     println("\n=== Extension Function ===")
     val phrase = "Walking is good for your health".randomCase()
     println(phrase)
+
+    /************ Strings ************/
+    println("\n=== Strings ===")
+    var text = """
+        {
+            name: Gersin,
+            age: -1
+        }
+    """.trimIndent()
+    println(text)
+
+    println("    ".isBlank())
+    println("".isBlank())
+    println("    ".ifBlank { "Never Blank!" })
+    println("   Welcome !   ".trim())
+    text = "$$1000$$"
+    println(text.removePrefix("$$"))
+    println(text.removeSuffix("$$"))
+    println(text.removeSurrounding("$$"))
+    text = "It's up to you man!"
+    println(text.equals("It's up to you MAN!", ignoreCase = true))
+
+    /************ ************/
+
 }
 
 /** Functions **/
@@ -220,4 +246,8 @@ fun String.randomCase() : String {
     } else {
         this.uppercase()
     }
+}
+
+fun fullName(firstName: String, secondName: String = "", lastName: String) {
+    println("Your name is $firstName ${secondName ?: ""}$lastName.")
 }
