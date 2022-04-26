@@ -243,6 +243,46 @@ fun main(args: Array<String>) {
         it.length
     })
     println(valueSuperFun)
+
+    /************ Let ************/
+    println("\n=== Let ===")
+    var var_1 : String? = "Hi!"
+    var_1?.let {
+        println("This is the value of var_1 : ${var_1}")
+    }
+
+    var var_2 = null
+    var_2?.let {
+        println("This is the value of var_2 : ${var_2}")
+    }
+
+    var var_3 = ""
+    var_3?.let {
+        println("This is the value of var_3 : ${var_3}")
+    }
+
+    val numbers1 = listOf("one", "two", "three", "four", null)
+    val modifiedFirstItem = numbers1.first()?.let { firstItem ->
+        println("The first item of the list is '$firstItem'")
+        if (firstItem.length >= 5) firstItem else "!" + firstItem + "!"
+    }?.uppercase()
+    println("First item after modifications: '$modifiedFirstItem'")
+
+    val modifiedLastItem = numbers1.last()?.let { lastItem ->
+        println("The last item of the list is '$lastItem'")
+        if (lastItem.length >= 5) lastItem else "!" + lastItem + "!"
+    }?.uppercase()
+    println("Last item after modifications: '$modifiedLastItem'")
+
+    /************ With ************/
+    println("\n=== With ===")
+    val seasons = listOf<String>("Spring", "Sumer", "Fall", "Winter")
+    with(seasons) {
+        println("These are the seasons $this")
+        println("There are ${size} the seasons")
+        println("The first season is ${first()}")
+        println("The last season is ${last()}")
+    }
 }
 
 /** Functions **/
