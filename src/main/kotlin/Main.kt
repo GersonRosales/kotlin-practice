@@ -283,6 +283,46 @@ fun main(args: Array<String>) {
         println("The first season is ${first()}")
         println("The last season is ${last()}")
     }
+
+    /************ Run ************/
+    println("\n=== Run ===")
+    val phones = mutableListOf("iPhone 12 Pro Max", "Samsung Galaxy A12", "iPhone SE 2020", "Xiaomi Redmi 9")
+        .run {
+            removeIf { it -> it.contains("iPhone") }
+            this
+        }
+    println(phones)
+
+    /************ Apply ************/
+    println("\n=== Apply ===")
+    val phones2 = mutableListOf("iPhone 12 Pro Max", "Samsung Galaxy A12", "iPhone SE 2020", "Xiaomi Redmi 9")
+        .apply {
+            removeIf { it -> it.contains("iPhone") }
+        }
+    println(phones2)
+
+    var colors : MutableList<String>? = null
+    println(colors?.javaClass)
+    printColors(colors)
+    colors?.add("Green")
+    println(colors?.javaClass)
+    colors = mutableListOf("Red")
+    println(colors?.javaClass)
+    printColors(colors)
+
+    /************ Also ************/
+    println("\n=== Also ===")
+    val result1 = mutableListOf("iPhone 12 Pro Max", "Samsung Galaxy A12", "iPhone SE 2020", "Xiaomi Redmi 9").also {
+        "The colors are $it"
+    }.asReversed()
+
+    println(result1)
+}
+
+fun printColors(colors : MutableList<String>?) {
+    colors?.apply {
+        println("These are the colors $this")
+    }
 }
 
 /** Functions **/
